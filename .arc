@@ -4,7 +4,7 @@ wonder-ltg
 @static
 
 @http
-
+get /js/:type/:module
 
 @tables
 data
