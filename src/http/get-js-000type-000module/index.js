@@ -1,6 +1,4 @@
-const { promisify } = require('util')
 const rollup = require('rollup')
-const readFile = promisify(require('fs').readFile)
 const join = require('path').join
 const sha = require('crypto').createHash('sha1')
 

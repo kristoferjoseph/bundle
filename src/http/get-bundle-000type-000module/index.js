@@ -1,12 +1,13 @@
-const { promisify } = require('util')
 const rollup = require('rollup')
-const readFile = promisify(require('fs').readFile)
 const join = require('path').join
+const sha = require('crypto').createHash('sha1')
 
 exports.handler = async function http(req) {
   let params = req.pathParameters || {}
   let type = params.type
-  let module = params.module && params.module.split('-')[1]
+  let parts = params.module && params.module.split('-')
+  let fingerprint = parts[0]
+  let module = parts[1]
   let response = {
     statusCode: 404,
     headers: {
@@ -23,11 +24,15 @@ exports.handler = async function http(req) {
         format: 'esm'
       })
       let body = bundled.output[0].code
-      response = {
-        headers: {
-          'content-type': 'text/javascript; charset=utf-8;'
-        },
-        body
+      let hash = encodeURIComponent(await sha.update(body).digest('base64'))
+
+      if (hash === fingerprint) {
+        response = {
+          headers: {
+            'content-type': 'text/javascript; charset=utf-8;'
+          },
+          body
+        }
       }
     } catch (err) {
       console.error('ERROR', err)
