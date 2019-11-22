@@ -1,12 +1,10 @@
 const rollup = require('rollup')
 const join = require('path').join
-const sha = require('crypto').createHash('sha1')
 
 exports.handler = async function http(req) {
   let params = req.pathParameters || {}
   let type = params.type
   let parts = params.module && params.module.split('-')
-  let fingerprint = encodeURIComponent(parts[0])
   let module = parts[1]
   let response = {
     statusCode: 404,
@@ -24,15 +22,13 @@ exports.handler = async function http(req) {
         format: 'esm'
       })
       let body = bundled.output[0].code
-      let hash = encodeURIComponent(await sha.update(body).digest('base64'))
+      console.log('BUNDLED')
 
-      if (hash === fingerprint) {
-        response = {
-          headers: {
-            'content-type': 'text/javascript; charset=utf-8;'
-          },
-          body
-        }
+      response = {
+        headers: {
+          'content-type': 'text/javascript; charset=utf-8;'
+        },
+        body
       }
     } catch (err) {
       console.error('ERROR', err)
