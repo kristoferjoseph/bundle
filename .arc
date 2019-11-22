@@ -8,6 +8,7 @@ get /js/:type/:module
 get /bundle/:type/:module
 get /raw/:type/:module
 get /push/:type/:module
+get /pusher
 
 @tables
 data
