@@ -18,11 +18,13 @@ exports.handler = async function http(req) {
       let bundle = await rollup.rollup({
         input: join(__dirname, 'node_modules', '@architect', 'views', type, module)
       })
+      console.log('BUNDLE')
       let bundled = await bundle.generate({
         format: 'esm'
       })
       let body = bundled.output[0].code
       let hash = encodeURIComponent(await sha.update(body).digest('base64'))
+      console.log('HASH')
       let location = `/bundle/${type}/${hash}-${module}`
       response = {
         statusCode: 302,
