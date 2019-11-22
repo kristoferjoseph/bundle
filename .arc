@@ -6,6 +6,7 @@ wonder-ltg
 @http
 get /js/:type/:module
 get /bundle/:type/:module
+get /raw/:type/:module
 
 @tables
 data
