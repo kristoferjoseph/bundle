@@ -3,12 +3,16 @@
 <head>
   <meta charset=utf-8>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bundling</title>
+  <title>Waterfall</title>
   <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" rel="icon" type="image/x-icon">
 </head>
 <body>
-  <a href="/waterfall.html">Waterfall</a>
-  <a href="/push.html">Push</a>
-  <a href="/bundle.html">Bundle</a>
+  <div id="root"></div>
+  <script type="module">
+    import Main from '/raw/pages/main.js'
+    const root = document.getElementById('root')
+    root.innerHTML = Main()
+  </script>
 </body>
 </html>
+

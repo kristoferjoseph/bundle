@@ -6,7 +6,7 @@ exports.handler = async function http(req) {
   let params = req.pathParameters || {}
   let type = params.type
   let parts = params.module && params.module.split('-')
-  let fingerprint = parts[0]
+  let fingerprint = encodeURIComponent(parts[0])
   let module = parts[1]
   let response = {
     statusCode: 404,
