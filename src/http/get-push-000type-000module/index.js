@@ -19,8 +19,7 @@ exports.handler = async function http(req) {
       response = {
         headers: {
           'content-type': 'text/javascript; charset=utf-8;',
-          'LINK': '</raw/ui/header.js>; rel=preload; as=script',
-          'LINK': '</raw/ui/footer.js>; rel=preload; as=script'
+          'LINK': '</raw/ui/header.js>; rel=preload; as=script, </raw/ui/footer.js>; rel=preload; as=script'
         },
         body
       }
