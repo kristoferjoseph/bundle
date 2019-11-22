@@ -10,3 +10,6 @@ export default function Main (props) {
 </section>
   `
 }
+
+const root = document.getElementById('root')
+root.innerHTML = Main()
