@@ -2,6 +2,7 @@
   "name": "begin-app-get-js-000type-000module",
   "dependencies": {
     "@architect/functions": "latest",
-    "@begin/data": "latest"
+    "@begin/data": "latest",
+    "rollup": "latest"
   }
 }
