@@ -22,7 +22,6 @@ exports.handler = async function http(req) {
         format: 'esm'
       })
       let body = bundled.output[0].code
-      console.log('BUNDLED')
 
       response = {
         headers: {

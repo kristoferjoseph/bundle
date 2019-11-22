@@ -1,6 +1,6 @@
 const rollup = require('rollup')
 const join = require('path').join
-const sha = require('crypto').createHash('sha1')
+const crypto = require('crypto')
 
 exports.handler = async function http(req) {
   let params = req.pathParameters || {}
@@ -22,7 +22,7 @@ exports.handler = async function http(req) {
         format: 'esm'
       })
       let body = bundled.output[0].code
-      let hash = encodeURIComponent(await sha.update(body).digest('base64'))
+      let hash = encodeURIComponent(await crypto.createHash('sha1').update(body).digest('base64'))
       let location = `/bundle/${type}/${hash}-${module}`
       response = {
         statusCode: 302,
